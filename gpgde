@@ -1,0 +1,12 @@
+#! /bin/bash
+
+FILENAME=$1
+FILENOEXTENSION=${FILENAME%%.*}
+
+gpg -d $FILENAME > $FILENOEXTENSION
+
+if [ $? == 0 ] && [ -f $FILENOEXTENSION ]; #make sure gpg returned 0 and that the new encrypted file exists
+then
+  rm -rf $FILENAME #remove the original gile
+echo "Decrypted file at: $FILENOEXTENSION"
+fi

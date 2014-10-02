@@ -1,0 +1,9 @@
+#! /bin/bash
+
+gpg -ea -r ben@benreichert.com $1
+
+if [ $? == 0 ] && [ -f $1.asc ]; #make sure gpg returned 0 and that the new encrypted file exists
+then
+  rm -rf $1 #remove the original gile
+echo "Encrypted file at: $1.asc"
+fi
